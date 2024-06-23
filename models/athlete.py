@@ -1,6 +1,6 @@
 from datetime import datetime
 from sqlalchemy import DateTime, ForeignKey, Integer, String, Float, Column
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, Mapped, mapped_column
 from contrib.models import BaseModel
 
 
@@ -15,7 +15,9 @@ class AthleteModel(BaseModel):
     height: float = Column(Float, nullable=False)
     sex: str = Column(String(1), nullable=False)
     created_at: datetime = Column(DateTime, nullable=False, default=datetime.utcnow)
-    category: 'CategoryModel' = relationship('CategoryModel', back_populates='athlete', lazy='selectin')
-    category_id: int = Column(ForeignKey('categories.pk_id'))
-    training_center: 'TrainingCenterModel' = relationship('TrainingCenterModel', back_populates='athlete', lazy='selectin')
-    training_center_id: int = Column(ForeignKey('training_centers.pk_id'))
+
+    category: Mapped['CategoryModel'] = relationship(back_populates="athlete", lazy='selectin')
+    category_id: Mapped[int] = mapped_column(ForeignKey("categories.pk_id"))
+
+    training_center: Mapped['TrainingCenterModel'] = relationship(back_populates="athlete", lazy='selectin')
+    training_center_id: Mapped[int] = mapped_column(ForeignKey("training_centers.pk_id"))
