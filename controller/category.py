@@ -39,7 +39,7 @@ async def post(
 )
 async def query(db_session: DatabaseDependency) -> List[CategoryOut]:
     categories: list[CategoryOut] = (await db_session.execute(select(CategoryModel))).scalars().all()
-    return categories
+    return [CategoryOut.model_validate(category) for category in categories]
 
 
 @router.get(

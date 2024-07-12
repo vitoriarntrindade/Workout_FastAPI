@@ -72,8 +72,8 @@ async def post(
     response_model=List[AthleteOut]
 )
 async def query(db_session: DatabaseDependency) -> List[AthleteOut]:
-    athlete: list[AthleteOut] = (await db_session.execute(select(AthleteModel))).scalars().all()
-    return athlete
+    athletes: list[AthleteOut] = (await db_session.execute(select(AthleteModel))).scalars().all()
+    return athletes
 
 
 @router.get(
@@ -89,4 +89,36 @@ async def query(id: UUID4, db_session: DatabaseDependency) -> AthleteOut:
     if not athlete:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f'Atleta de ID {id} não foi encontrado')
+    return athlete
+
+
+@router.patch(
+    '/id',
+    summary="Edita um atleta pelo ID",
+    status_code=status.HTTP_200_OK,
+    response_model=AthleteOut
+)
+async def patch(
+    id: UUID4,
+    db_session: DatabaseDependency,
+    atleta_up: AthleteUpdate = Body(...)
+) -> AthleteOut:
+
+    athlete = (
+        await db_session.execute(select(AthleteModel).filter_by(id=id))).scalars().one_or_none()
+
+    if not athlete:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f'Atleta de ID {id}'
+        )
+
+    athlete_update = atleta_up.model_dump(exclude_unset=True)
+
+    for key, value in athlete_update.items():
+        setattr(athlete,  key, value)
+
+    await db_session.commit()
+    await db_session.refresh(athlete)
+
     return athlete

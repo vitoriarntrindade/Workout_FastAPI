@@ -1,8 +1,7 @@
 from typing import List
 from uuid import uuid4
 
-from fastapi import APIRouter, Body, HTTPException, status
-from pydantic import UUID4
+from fastapi import APIRouter, Body, status
 from sqlalchemy import select
 from schemas.training_center import TrainingCenterOut, TrainingCenterIn
 from models.training_center import TrainingCenterModel

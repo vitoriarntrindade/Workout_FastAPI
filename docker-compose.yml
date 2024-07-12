@@ -3,7 +3,7 @@ services:
   db:
     image: postgres:11-alpine
     environment:
-      POSTGRES_PASSWORD: workout
+      POSTGRES_PASSWORD: novasenha
       POSTGRES_USER: workout
       POSTGRES_DB: workout
     ports:
