@@ -37,7 +37,7 @@ Para salvar os dados, está sendo utilizado o *PostgreSQL*, por meio do *Docker*
 Para subir o banco de dados, caso não tenha o docker-compose instalado, faça a instalação e logo em seguida, execute:
 
 
-``make run-docker`
+`make run-docker`
 
 Para criar uma nova migration, execute:
 
