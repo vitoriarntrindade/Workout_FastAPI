@@ -21,12 +21,14 @@ A API foi desenvolvida utilizando FastAPI (async), junto das seguintes bibliotec
     Alembic
     SQLAlchemy
     Pydantic
+    PostgreSQL
+    Docker
 
-Para salvar os dados, está sendo utilizado o *PostgreSQL*, por meio do *Docker*.
+
 
 ## ▶️ Execução da API
 
-`**pip install -r requirements.txt**`
+`pip install -r requirements.txt`
 
 
 Para subir o banco de dados, caso não tenha o docker-compose instalado, faça a instalação e logo em seguida, execute:
