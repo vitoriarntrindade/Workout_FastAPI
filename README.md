@@ -14,11 +14,6 @@ FastAPI oferece alta performance, é fácil de aprender, fácil de codar e está
 Código assíncrono significa que a linguagem tem uma forma de instruir o computador/programa que, em certo ponto, ele terá que esperar por algo que será finalizado em outro lugar.
 
 
-🗂️ Modelagem de Entidade e Relacionamento - MER
-
-![image](https://github.com/user-attachments/assets/6c6968f7-2a56-4bc2-8a1b-f2ec852c81c5)
-
-
 # 🛠️ Stack da API
 
 A API foi desenvolvida utilizando FastAPI (async), junto das seguintes bibliotecas:
